@@ -1,6 +1,10 @@
 package com.wang;
 
 import javax.xml.crypto.Data;
+/**
+ * 实现稀疏数组的压缩存储和解压
+ */
+
 
 public class sparseArray {
     public static void main(String[] args) {
@@ -45,6 +49,23 @@ public class sparseArray {
         }
         //遍历打印稀疏数组
         for (int[] row : chessArray2) {
+            for (int date: row) {
+                System.out.print(date+"\t");
+            }
+            System.out.println();
+        }
+
+        /*
+        实现稀疏数组的还原
+         */
+        //1.通过稀疏数组第一行的行列数实例化一个原二维数组
+        int[][] chessArray3 = new int[chessArray2[0][0]][chessArray2[0][1]];
+        //2.遍历稀疏数组的每一行(从第二行正式存储元素位置开始)，得到原数组的非0元素位置以及所在位置
+        for (int i = 1 ; i < chessArray2.length; i++){
+            chessArray3[chessArray2[i][0]][chessArray2[i][1]] = chessArray2[i][2];
+        }
+        //遍历打印还原后数组
+        for (int[] row : chessArray3) {
             for (int date: row) {
                 System.out.print(date+"\t");
             }
